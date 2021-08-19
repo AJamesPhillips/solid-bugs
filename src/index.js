@@ -1,59 +1,82 @@
 import auth from 'solid-auth-client';
+import {
+    addStringNoLocale,
+    createSolidDataset,
+    createThing,
+    saveSolidDatasetAt,
+    setThing,
+    getSolidDataset,
+    getContainedResourceUrlAll,
+} from "@inrupt/solid-client"
+import { fetch as solid_fetch, getDefaultSession, handleIncomingRedirect } from "@inrupt/solid-client-authn-browser"
+
 import {createDocument, fetchDocument} from "tripledoc"
 import {schema} from 'rdf-namespaces';
 import {RDF} from '@inrupt/vocab-common-rdf'
 
 
-async function getWebId(identityProvider) {
-    const session = await auth.currentSession();
-    if (session) {
-        return session.webId;
-    }
-    await auth.login(identityProvider);
+function log (html_message)
+{
+    const text_el = document.createElement("span")
+    text_el.innerHTML = html_message
+    document.body.appendChild(text_el)
+    document.body.appendChild(document.createElement("br"))
 }
 
-export function getPodFromWebId(webId) {
+
+async function getWebId(identityProvider) {
+    const solid_session = getDefaultSession()
+    log(solid_session.info.isLoggedIn ? "logged in" : "not logged in")
+
+    // const session = await auth.currentSession();
+    // if (session) {
+    //     return session.webId;
+    // }
+    // await auth.login(identityProvider);
+
+    if (!solid_session.info.isLoggedIn)
+    {
+        await start_login(identityProvider)
+    }
+    return solid_session.info.webId
+}
+
+
+
+async function start_login (oidcIssuer)
+{
+    const session = getDefaultSession()
+
+    if (oidcIssuer && !session.info.isLoggedIn)
+    {
+        const args = {
+            oidcIssuer,
+            clientName: "demo",
+            redirectUrl: window.location.href,
+        }
+        log("Logging into solid session with: " + JSON.stringify(args))
+        await session.login(args)
+    }
+
+    return session.info.webId
+}
+
+
+
+async function finish_login ()
+{
+    await handleIncomingRedirect({ restorePreviousSession: true })
+}
+
+
+
+function getDocumentUrlFromWebId (webId, path)
+{
     const a = document.createElement('a');
     a.href = webId;
-    return `${a.protocol}//${a.hostname}/private/tmp/tripledoc-bug.ttl`;
+    return `${a.protocol}//${a.hostname}/private/${path}`;
 }
 
-async function initDocument(documentUrl) {
-    let docOut
-    try {
-        console.log("fetching pod document at", documentUrl)
-        docOut = await fetchDocument(documentUrl);
-        console.log("fetched pod document at", documentUrl)
-    } catch (err) {
-        console.log("creating new pod document at", documentUrl)
-        docOut = await createDocument(documentUrl);
-        console.log("created new pod document at", documentUrl)
-    }
-    return await docOut
-}
-
-function createAmount(podDocument, amountDecimal, currency) {
-
-    const amountSubject = podDocument.addSubject()
-    amountSubject.addRef(RDF.type, schema.MonetaryAmount) // it is a monetary amount type
-    amountSubject.setString(schema.currency, currency)
-    amountSubject.setDecimal(schema.amount, amountDecimal)
-    console.log("Created",amountSubject.asRef())
-    return amountSubject
-}
-
-function getWebIdFromSubjectId(subjectId) {
-    return `#${subjectId.split('#')[1]}`
-}
-
-async function deleteAllSubjectsOfType(podDocument) {
-    const deletedSubjects = []
-    podDocument.getAllSubjectsOfType(schema.MonetaryAmount).forEach( (s) => {
-        deletedSubjects.push(getWebIdFromSubjectId(s.asRef()))
-        podDocument.removeSubject(getWebIdFromSubjectId(s.asRef()))
-    })
-
-}
 
 function addButton(value, clickHandler) {
     let element = document.createElement("input");
@@ -63,68 +86,44 @@ function addButton(value, clickHandler) {
     element.onclick = clickHandler
 
     document.body.appendChild(element);
+    document.body.appendChild(document.createElement("br"))
 }
 
 (async function () {
+    await finish_login()
     const webId = await getWebId("https://solidcommunity.net");
-    const documentUrl = getPodFromWebId(webId)
 
-    addButton("1. Create one then delete, reuse doc -- Working", async function () {
-        let podDocument = await initDocument(documentUrl);
-        createAmount(podDocument, 1.0, "USD")
-        podDocument = await podDocument.save()
+    log(`Sign in with webId "${webId}"`)
 
-        await deleteAllSubjectsOfType(podDocument)
-        await podDocument.save()
-        console.log("done create one then delete")
+
+    addButton("1. Create doc -- Working", async function () {
+        let items_dataset = createSolidDataset()
+        let thing = createThing({ name: "123" })
+        thing = addStringNoLocale(thing, "http://example.com/schema/title", "some title")
+        items_dataset = setThing(items_dataset, thing)
+
+        const documentUrl = getDocumentUrlFromWebId(webId, `demo_bug/tripledoc-${Math.random()}.ttl`)
+        log("Creating: " + documentUrl)
+        await saveSolidDatasetAt(documentUrl, items_dataset, { fetch: solid_fetch })
+        log("done create one")
     })
 
-    addButton("2. Create one then delete, different doc -- BROKEN", async function () {
-        let podDocument = await initDocument(documentUrl);
-        createAmount(podDocument, 1.0, "USD")
 
-        await podDocument.save()
-        console.log("done create one")
+    addButton("2. Then fetch directory -- Works but logs 401", async function () {
+        const documentUrl = getDocumentUrlFromWebId(webId, `demo_bug`)
+        log("attempting to get: " + documentUrl)
 
-        podDocument = await initDocument(documentUrl);
-        await deleteAllSubjectsOfType(podDocument)
-        await podDocument.save()
-        console.log("done create one then delete")
+        try
+        {
+            const dataset = await getSolidDataset(documentUrl, { fetch: solid_fetch })
+            const urls = await getContainedResourceUrlAll(dataset)
+            log("done getting, got urls: " + urls)
+        }
+        catch (err)
+        {
+            log("error whilst getting: " + err)
+        }
+
     })
 
-    addButton("bug report code", async function(){
-//login
-const session = await auth.currentSession();
-if (!session) {
-    await auth.login("https://solidcommunity.net");
-}
-
-// get pod doc url
-const a = document.createElement('a');
-a.href = webId;
-const documentUrl = `${a.protocol}//${a.hostname}/private/tmp/tripledoc-bug.ttl`;
-
-// get document
-let podDocument = null
-try {
-    podDocument = await fetchDocument(documentUrl);
-} catch (err) {
-    podDocument = await createDocument(documentUrl);
-}
-
-// create subject and save
-const amountSubject = podDocument.addSubject()
-amountSubject.addRef(RDF.type, schema.MonetaryAmount)
-amountSubject.setString(schema.currency, "USD")
-amountSubject.setDecimal(schema.amount, 1.0)
-await podDocument.save()
-
-// fetch document against, delete the subject, and save
-podDocument = await fetchDocument(documentUrl);
-podDocument.getAllSubjectsOfType(schema.MonetaryAmount).forEach((s) => {
-    podDocument.removeSubject(s.asRef())
-})
-// this call returns 409
-await podDocument.save()
-    })
 })();
