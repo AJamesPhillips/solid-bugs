@@ -9,4 +9,4 @@
 
 * Click button 1. it will work OK
 
-* Click button 2a then 2b. It breaks.
+* Click button 2. it also works but logs a 401 error to the console
