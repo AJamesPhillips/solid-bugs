@@ -102,7 +102,7 @@ function addButton(value, clickHandler) {
         thing = addStringNoLocale(thing, "http://example.com/schema/title", "some title")
         items_dataset = setThing(items_dataset, thing)
 
-        const documentUrl = getDocumentUrlFromWebId(webId, `demo_bug/tripledoc-${Math.random()}.ttl`)
+        const documentUrl = getDocumentUrlFromWebId(webId, `tmp/demo_bug/tripledoc-${Math.random()}.ttl`)
         log("Creating: " + documentUrl)
         await saveSolidDatasetAt(documentUrl, items_dataset, { fetch: solid_fetch })
         log("done create one")
@@ -110,7 +110,7 @@ function addButton(value, clickHandler) {
 
 
     addButton("2. Then fetch directory -- Works but logs 401", async function () {
-        const documentUrl = getDocumentUrlFromWebId(webId, `demo_bug`)
+        const documentUrl = getDocumentUrlFromWebId(webId, `tmp/demo_bug`)
         log("attempting to get: " + documentUrl)
 
         try
