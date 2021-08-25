@@ -1,23 +1,23 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@inrupt/solid-client': ^1.1.0
-  '@inrupt/solid-client-authn-browser': ^1.11.0
-  '@inrupt/vocab-common-rdf': ^0.6.3
-  buffer: ^6.0.2
-  clean-webpack-plugin: ^3.0.0
-  html-webpack-plugin: ^4.5.0
-  lodash: ^4.17.20
-  rdf-namespaces: ^1.9.2
-  solid-auth-client: ^2.5.3
-  tripledoc: ^4.4.0
-  webpack: ^5.5.0
-  webpack-cli: ^4.2.0
-  webpack-dev-server: ^3.11.0
+  '@inrupt/solid-client': 1.11.0
+  '@inrupt/solid-client-authn-browser': 1.11.2
+  '@inrupt/vocab-common-rdf': 0.6.3
+  buffer: 6.0.3
+  clean-webpack-plugin: 3.0.0
+  html-webpack-plugin: 4.5.2
+  lodash: 4.17.21
+  rdf-namespaces: 1.9.2
+  solid-auth-client: 2.5.6
+  tripledoc: 4.4.0
+  webpack: 5.51.1
+  webpack-cli: 4.8.0
+  webpack-dev-server: 3.11.2
 
 dependencies:
   '@inrupt/solid-client': 1.11.0
-  '@inrupt/solid-client-authn-browser': 1.11.0
+  '@inrupt/solid-client-authn-browser': 1.11.2
   '@inrupt/vocab-common-rdf': 0.6.3
   buffer: 6.0.3
   lodash: 4.17.21
@@ -46,41 +46,41 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
-  /@inrupt/jose-legacy-modules/0.0.3-3.14.3:
-    resolution: {integrity: sha512-vo12yEC3aMkJ+w0Q6vWehC6OQrd8dWLfdgVuWtf6sEb1FkVmy35+63iNhCSozHfo953RFL33ZxHF/qdyIyYmAw==}
+  /@inrupt/jose-legacy-modules/0.0.3-3.15.4:
+    resolution: {integrity: sha512-gcmIqLLFyhNZWw9OKK3kNgEbpKU0z6kn6NPWQlJf0Dy5QtuIgwcS7aRU2GJScz+Dx9KGQVvyAapYX3buHyrBXw==}
     dependencies:
-      jose: 3.14.3
+      jose: 3.15.4
     dev: false
 
-  /@inrupt/oidc-client-ext/1.11.0:
-    resolution: {integrity: sha512-LI4k/7Tl8+LdY/60Qhuw8CYTgmMUScPy2gPHKLEBhnBjbDGybSp7hj5FkQ+19ayv31S7S4MQYE+bLHUiuVlmpw==}
+  /@inrupt/oidc-client-ext/1.11.2:
+    resolution: {integrity: sha512-htdqsFnLOSUhi+AkhyYCTA1vjUsZT8TeQOiXEtLDgneCRxwxCGfRwVSgXSC30OeophlgrZ7/QVixaz3BB5yXEA==}
     dependencies:
-      '@inrupt/jose-legacy-modules': 0.0.3-3.14.3
-      '@inrupt/solid-client-authn-core': 1.11.0
+      '@inrupt/jose-legacy-modules': 0.0.3-3.15.4
+      '@inrupt/solid-client-authn-core': 1.11.2
       '@types/uuid': 8.3.1
       form-urlencoded: 6.0.4
       oidc-client: 1.11.5
       uuid: 8.3.2
     dev: false
 
-  /@inrupt/solid-client-authn-browser/1.11.0:
-    resolution: {integrity: sha512-D6CF3PP+ajCBlYo7uSFEJzyVrtdhMVopHkuFeNq8BlL2HxOHBSVqGjv6BRKeu2dF6AdClLfDOQ7f7kVInSvwag==}
+  /@inrupt/solid-client-authn-browser/1.11.2:
+    resolution: {integrity: sha512-DifF7hSMuFEB9+lDAYjRq6E7DOIZjQwdk9gUkPj93tdIb4icHXQ9JTMwBAxXmdTruPC2g5Pzu0PQ0PCvbIpuDA==}
     dependencies:
-      '@inrupt/jose-legacy-modules': 0.0.3-3.14.3
-      '@inrupt/oidc-client-ext': 1.11.0
-      '@inrupt/solid-client-authn-core': 1.11.0
+      '@inrupt/jose-legacy-modules': 0.0.3-3.15.4
+      '@inrupt/oidc-client-ext': 1.11.2
+      '@inrupt/solid-client-authn-core': 1.11.2
       '@types/lodash.clonedeep': 4.5.6
-      '@types/node': 15.14.8
+      '@types/node': 15.14.9
       '@types/uuid': 8.3.1
       events: 3.3.0
       lodash.clonedeep: 4.5.0
       uuid: 8.3.2
     dev: false
 
-  /@inrupt/solid-client-authn-core/1.11.0:
-    resolution: {integrity: sha512-qmEEkiNnhiM7rE474I5GRapztYVZ51EF/iRzN2ldT7Jlq55kcaEdvK9ZwL288jLk4bvdEwy6k9ctebCCkTgkVw==}
+  /@inrupt/solid-client-authn-core/1.11.2:
+    resolution: {integrity: sha512-hL+BC81lE4V0EXZE8PJ418y/vFvW+rfcmHgHqi0ZKSSxLNVE08Ok4W2d+g6wcW3wyePZ9FOL2K8BIh7/jCGj8Q==}
     dependencies:
-      '@inrupt/jose-legacy-modules': 0.0.3-3.14.3
+      '@inrupt/jose-legacy-modules': 0.0.3-3.15.4
       '@inrupt/solid-common-vocab': 1.0.0
       '@types/lodash.clonedeep': 4.5.6
       '@types/uuid': 8.3.1
@@ -195,7 +195,7 @@ packages:
   /@rdfjs/types/1.0.1:
     resolution: {integrity: sha512-YxVkH0XrCNG3MWeZxfg596GFe+oorTVusmNxRP6ZHTsGczZ8AGvG3UchRNkg3Fy4MyysI7vBAA5YZbESL+VmHQ==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
     dev: false
 
   /@sinonjs/text-encoding/0.7.1:
@@ -252,7 +252,7 @@ packages:
     resolution: {integrity: sha512-w+LsMxKyYQm347Otw+IfBXOv9UWVjpHpCDdbBMt8Kz/xbvCYNjP+0qPh91Km3iKfSRLBB0P7fAMf0KHrPu+MyA==}
     dependencies:
       '@types/minimatch': 3.0.5
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
     dev: true
 
   /@types/html-minifier-terser/5.1.2:
@@ -262,7 +262,7 @@ packages:
   /@types/http-link-header/1.0.3:
     resolution: {integrity: sha512-y8HkoD/vyid+5MrJ3aas0FvU3/BVBGcyG9kgxL0Zn4JwstA8CglFPnrR0RuzOjRCXwqzL5uxWC2IO7Ub0rMU2A==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
     dev: false
 
   /@types/json-schema/7.0.9:
@@ -286,21 +286,21 @@ packages:
   /@types/n3/1.10.3:
     resolution: {integrity: sha512-eVw/weCi6JPooPTz7Zgezmdw5ypNE57Ep+SlxFhT75F0nL9snsu1TIpAMAqtzHvi7VKJKJbnuOxAy9jgFCXDTA==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
       rdf-js: 4.0.2
     dev: false
 
-  /@types/node/15.14.8:
-    resolution: {integrity: sha512-+ZjmmoGV7WBwhzNh/GkwehB7uyXn9HFwzQUfj9pbyR8eFAq20Qguoh93sPbWzzhsbhTme6YE92/iJ54Z0WRH7A==}
+  /@types/node/15.14.9:
+    resolution: {integrity: sha512-qjd88DrCxupx/kJD5yQgZdcYKZKSIGBVDIBE1/LTGcNm3d2Np/jxojkdePDdfnBHJc5W7vSMpbJ1aB7p/Py69A==}
     dev: false
 
-  /@types/node/16.6.2:
-    resolution: {integrity: sha512-LSw8TZt12ZudbpHc6EkIyDM3nHVWKYrAvGy6EAJfNfjusbwnThqjqxUKKRwuV3iWYeW/LYMzNgaq3MaLffQ2xA==}
+  /@types/node/16.7.1:
+    resolution: {integrity: sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==}
 
   /@types/rdf-js/3.0.3:
     resolution: {integrity: sha512-1dvodNHh/YpLovHA/b046Nu+xERVt0KcYJFQH1A8S4ZcMj+stYtx4ypXw0X2/oatbREUo4JW+cjoBll3CVtwSQ==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
     dev: false
 
   /@types/rdfjs__dataset/1.0.5:
@@ -334,7 +334,7 @@ packages:
   /@types/webpack-sources/3.2.0:
     resolution: {integrity: sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
       '@types/source-list-map': 0.1.2
       source-map: 0.7.3
     dev: true
@@ -342,7 +342,7 @@ packages:
   /@types/webpack/4.41.30:
     resolution: {integrity: sha512-GUHyY+pfuQ6haAfzu4S14F+R5iGRwN6b2FRNJY7U0NilmFAqbsOfK6j1HwuLBAqwRIT+pVdNDJGJ6e8rpp0KHA==}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
       '@types/tapable': 1.0.8
       '@types/uglify-js': 3.13.1
       '@types/webpack-sources': 3.2.0
@@ -846,7 +846,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001251
       colorette: 1.3.0
-      electron-to-chromium: 1.3.812
+      electron-to-chromium: 1.3.817
       escalade: 3.1.1
       node-releases: 1.1.75
     dev: true
@@ -1108,8 +1108,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /core-js/3.16.2:
-    resolution: {integrity: sha512-P0KPukO6OjMpjBtHSceAZEWlDD1M2Cpzpg6dBbrjFqFhBHe/BwhxaP820xKOjRn/lZRQirrCusIpLS/n2sgXLQ==}
+  /core-js/3.16.3:
+    resolution: {integrity: sha512-lM3GftxzHNtPNUJg0v4pC2RC6puwMd6VZA7vXUczi+SKmCWSf4JwO89VJGMqbzmB7jlK7B5hr3S64PqwFL49cA==}
     requiresBuild: true
     dev: false
 
@@ -1331,8 +1331,8 @@ packages:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: true
 
-  /electron-to-chromium/1.3.812:
-    resolution: {integrity: sha512-7KiUHsKAWtSrjVoTSzxQ0nPLr/a+qoxNZwkwd9LkylTOgOXSVXkQbpIVT0WAUQcI5gXq3SwOTCrK+WfINHOXQg==}
+  /electron-to-chromium/1.3.817:
+    resolution: {integrity: sha512-Vw0Faepf2Id9Kf2e97M/c99qf168xg86JLKDxivvlpBQ9KDtjSeX0v+TiuSE25PqeQfTz+NJs375b64ca3XOIQ==}
     dev: true
 
   /emoji-regex/7.0.3:
@@ -2415,13 +2415,13 @@ packages:
     resolution: {integrity: sha512-qupxcj/dRuA3xHPMUd40gr2EaAurFbkwzOh7wfPaeE9id7hyjURRQoqNfHifHK3XjJU6YJJUQKILGUnwGPEOCA==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.6.2
+      '@types/node': 16.7.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
 
-  /jose/3.14.3:
-    resolution: {integrity: sha512-j1vO5oWqa6LmdpiZvhkM9NYxN3EuTrmzVIqSGWtJVP6BOByujZdefZZjSFGzxmbf4GLYWaXLZMKTyVPbm00S2Q==}
+  /jose/3.15.4:
+    resolution: {integrity: sha512-SXeGi+g5ZcNgV6o7f+Mx3Q1gaYMSBzAi3cmcZPxoeCEZPgfSCnnyfmMXzXoLDh+XL4KMtGvhOsYBoqQhnuR2rQ==}
     dev: false
 
   /js-tokens/4.0.0:
@@ -2874,7 +2874,7 @@ packages:
     dependencies:
       acorn: 7.4.1
       base64-js: 1.5.1
-      core-js: 3.16.2
+      core-js: 3.16.3
       crypto-js: 4.1.1
       serialize-javascript: 4.0.0
     dev: false
@@ -3566,8 +3566,8 @@ packages:
       use: 3.1.1
     dev: true
 
-  /sockjs-client/1.5.1:
-    resolution: {integrity: sha512-VnVAb663fosipI/m6pqRXakEOw7nvd7TUgdr3PlR/8V2I95QIdwT8L4nMxhyU8SmDBHYXU1TOElaKOmKLfYzeQ==}
+  /sockjs-client/1.5.2:
+    resolution: {integrity: sha512-ZzRxPBISQE7RpzlH4tKJMQbHM9pabHluk0WBaxAQ+wm/UieeBVBou0p4wVnSQGN9QmpAZygQ0cDIypWuqOFmFQ==}
     dependencies:
       debug: 3.2.7
       eventsource: 1.1.0
@@ -3794,7 +3794,7 @@ packages:
       schema-utils: 3.1.1
       serialize-javascript: 6.0.0
       source-map: 0.6.1
-      terser: 5.7.1
+      terser: 5.7.2
       webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
@@ -3808,8 +3808,8 @@ packages:
       source-map-support: 0.5.19
     dev: true
 
-  /terser/5.7.1:
-    resolution: {integrity: sha512-b3e+d5JbHAe/JSjwsC3Zn55wsBIM7AsHLjKxT31kGCldgbpFePaFo+PiddtO6uwRZWRw7sPXmAN8dTW61xmnSg==}
+  /terser/5.7.2:
+    resolution: {integrity: sha512-0Omye+RD4X7X69O0eql3lC4Heh/5iLj3ggxR/B5ketZLOtLiOqukUgjw3q4PDnNQbsrkKr3UMypqStQG3XKRvw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -4132,7 +4132,7 @@ packages:
       semver: 6.3.0
       serve-index: 1.9.1
       sockjs: 0.3.21
-      sockjs-client: 1.5.1
+      sockjs-client: 1.5.2
       spdy: 4.0.2_supports-color@6.1.0
       strip-ansi: 3.0.1
       supports-color: 6.1.0
