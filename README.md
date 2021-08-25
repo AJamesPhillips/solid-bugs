@@ -1,6 +1,6 @@
 
-* `npm i`
+* `pnpm i`
 
-* `npm run start 8080`
+* `npm start`
 
 * open `http://localhost:8080`
