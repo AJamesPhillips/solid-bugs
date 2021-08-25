@@ -162,6 +162,7 @@ function addButton(value, clickHandler)
         let items_dataset = createSolidDataset()
         let thing = createThing({ name: Math.round(Math.random() * 10000).toString() })
         thing = addStringNoLocale(thing, "http://example.com/schema/title", "some title")
+        thing = addDate(thing, "http://example.com/schema/datetime", new Date())
         items_dataset = setThing(items_dataset, thing)
 
         const documentUrl = await get_document_url()
@@ -190,8 +191,17 @@ function addButton(value, clickHandler)
         try
         {
             const dataset = await getSolidDataset(documentUrl, { fetch: solid_fetch })
-            const all_things = await getThingAll(dataset)
+            const all_things = getThingAll(dataset)
             log("done getting, got all things: " + JSON.stringify(all_things))
+
+            all_things.forEach(thing =>
+            {
+                const title = getStringNoLocale(thing, "http://example.com/schema/title")
+                const date = getDate(thing, "http://example.com/schema/datetime")
+                log("done getting, got title: " + JSON.stringify(title))
+                log("done getting, got date: " + JSON.stringify(date))
+            })
+
         }
         catch (err)
         {
