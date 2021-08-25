@@ -8,7 +8,7 @@ import {
     getSolidDataset,
     getContainedResourceUrlAll,
 } from "@inrupt/solid-client"
-import { fetch as solid_fetch, getDefaultSession, handleIncomingRedirect } from "@inrupt/solid-client-authn-browser"
+import { fetch as solid_fetch, getDefaultSession, handleIncomingRedirect, onSessionRestore } from "@inrupt/solid-client-authn-browser"
 
 import {createDocument, fetchDocument} from "tripledoc"
 import {schema} from 'rdf-namespaces';
@@ -90,6 +90,12 @@ function addButton(value, clickHandler) {
 }
 
 (async function () {
+    onSessionRestore((url) => {
+        log("session restored with url: " + url)
+        if (document.location.toString() !== url) history.replaceState(null, "", url)
+    })
+
+
     await finish_login()
     const webId = await getWebId("https://solidcommunity.net");
 
