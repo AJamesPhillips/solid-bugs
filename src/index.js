@@ -1,14 +1,17 @@
 import {
+    addDate,
     addStringNoLocale,
     createSolidDataset,
     createThing,
-    saveSolidDatasetAt,
-    setThing,
+    deleteSolidDataset,
+    getDate,
+    getIri,
     getSolidDataset,
     getStringNoLocale,
-    getIri,
     getThing,
     getThingAll,
+    saveSolidDatasetAt,
+    setThing,
 } from "@inrupt/solid-client"
 import {
     fetch as solid_fetch,
@@ -155,13 +158,24 @@ function addButton(value, clickHandler)
     }
 
 
-    addButton("1. Create doc -- Working", async function () {
+    addButton("1. Create doc", async function () {
         let items_dataset = createSolidDataset()
         let thing = createThing({ name: Math.round(Math.random() * 10000).toString() })
         thing = addStringNoLocale(thing, "http://example.com/schema/title", "some title")
         items_dataset = setThing(items_dataset, thing)
 
         const documentUrl = await get_document_url()
+
+        log("Creating (first deleting because pod.inrupt.com is not compliant with documentation): " + documentUrl)
+
+        try
+        {
+            await deleteSolidDataset(documentUrl, { fetch: solid_fetch })
+        }
+        catch (err)
+        {
+            if (!err || (err.statusCode !== 404)) console.error("Error deleting ", err)
+        }
 
         log("Creating: " + documentUrl)
         await saveSolidDatasetAt(documentUrl, items_dataset, { fetch: solid_fetch })
