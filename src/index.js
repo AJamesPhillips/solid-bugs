@@ -25,6 +25,7 @@ function log (html_message)
     text_el.innerHTML = html_message
     document.body.appendChild(text_el)
     document.body.appendChild(document.createElement("br"))
+    console.log(html_message)
 }
 
 
